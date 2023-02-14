@@ -1,14 +1,19 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public abstract class FuncionarioBase {
     String nome;
     String cargo;
     Double salario;
-    Date dataContratacao;
+    String dataContratacao;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/yyyy");
+    Calendar calendar = Calendar.getInstance();
 
-    public FuncionarioBase(String nome, String cargo, Double salario, Date dataContratacao) {
+    public FuncionarioBase(String nome, String cargo, Double salario, String dataContratacao) {
         this.nome = nome;
         this.cargo = cargo;
         this.salario = salario;
@@ -39,20 +44,20 @@ public abstract class FuncionarioBase {
         this.salario = salario;
     }
 
-    public Date getDataContratacao() {
+    public String getDataContratacao() {
         return dataContratacao;
     }
 
-    public void setDataContratacao(Date dataContratacao) {
+    public void setDataContratacao(String dataContratacao) {
         this.dataContratacao = dataContratacao;
     }
 
-    public Double calcularSalarioComBeneficio(Date data){
+    public Double calcularSalarioComBeneficio(String data) throws ParseException {
         Double salario = 0.0;
         return salario;
     }
 
-    public Double calcularSalarioSemBeneficio(Date data){
+    public Double calcularSalarioSemBeneficio(String data) throws ParseException {
         Double salario = 0.0;
         return salario;
     }

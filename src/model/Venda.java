@@ -3,19 +3,19 @@ package model;
 import java.util.Date;
 
 public class Venda {
-    private Date data;
+    private String data;
     private Double valor;
 
-    public Venda(Date data, Double valor) {
+    public Venda(String data, Double valor) {
         this.data = data;
         this.valor = valor;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 

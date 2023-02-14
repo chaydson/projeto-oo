@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Vendedor extends FuncionarioComBeneficio {
     private List<Venda> vendas;
-    public Vendedor(String nome, String cargo, Double salario, Date dataContratacao) {
+    public Vendedor(String nome, String cargo, Double salario, String dataContratacao) {
         super(nome, cargo, salario, dataContratacao);
     }
 
@@ -23,7 +23,7 @@ public class Vendedor extends FuncionarioComBeneficio {
     }
 
     @Override
-    public Double calcularSalarioComBeneficio(Date data){
+    public Double calcularSalarioComBeneficio(String data){
         Double valorVendas = 0.0;
         for (Venda v: vendas)
             if(v.getData().equals(data))
@@ -34,14 +34,14 @@ public class Vendedor extends FuncionarioComBeneficio {
         return salario;
     }
 
-    public Double calcularSalarioSemBeneficio(Date data){
+    public Double calcularSalarioSemBeneficio(String data){
         Double salario = 12000.0 + 1800.0*(dataContratacao.getTime() - data.getTime());
         return salario;
     }
 
 
     @Override
-    public Double calcularBeneficio(Date data){
+    public Double calcularBeneficio(String data){
         return calcularSalarioComBeneficio(data) - calcularSalarioSemBeneficio(data);
     }
 }
