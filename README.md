@@ -1,4 +1,4 @@
-# prova-sinerji
+# Prova Sinerji
 
 <p>Segue abaixo o diagrama uml de como foi modelado o exercício. Os nomes dos atributos e métodos não estão de acordo com o código porque eu não tive tempo de arrumar.</p>
 
