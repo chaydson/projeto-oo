@@ -1,6 +1,7 @@
 import controller.FuncionarioController;
 import model.*;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +33,13 @@ public class Main {
         vendasJoaoList.add(vendaJoao5);
 
         Secretario Jorge = new Secretario("Jorge", "Secretario", 7000.0, "01/2018");
-        Secretario Maria = new Secretario("Jorge", "Secretario", 7000.0, "12/2015");
-        Vendedor Ana = new Vendedor("Jorge", "Secretario", 7000.0, "12/2021",
+        Secretario Maria = new Secretario("Maria", "Secretario", 7000.0, "12/2015");
+        Vendedor Ana = new Vendedor("Ana", "Vendedor", 7000.0, "12/2021",
                 vendasAnaList);
-        Vendedor Joao = new Vendedor("Jorge", "Secretario", 7000.0, "12/2021",
+        Vendedor Joao = new Vendedor("Joao", "Vendedor", 7000.0, "12/2021",
                 vendasJoaoList);
-        Gerente Juliana = new Gerente("Jorge", "Secretario", 7000.0, "07/2017");
-        Gerente Bento = new Gerente("Jorge", "Secretario", 7000.0, "03/2014");
+        Gerente Juliana = new Gerente("Juliana", "Gerente", 7000.0, "07/2017");
+        Gerente Bento = new Gerente("Bento", "Gerente", 7000.0, "03/2014");
 
 
         List<FuncionarioBase> funcionarioBaseList =  new ArrayList<>();
@@ -59,9 +60,27 @@ public class Main {
         vendedorList.add(Ana);
         vendedorList.add(Joao);
 
+        DecimalFormat decimalFormat = new DecimalFormat("#0.0");
+
         FuncionarioController funcionarioController =  new FuncionarioController(funcionarioBaseList,
                 funcionarioComBeneficioList, vendedorList);
 
-        System.out.println(funcionarioController.valorTotalMensalDosSalariosComBeneficio("01/2018"));
+        System.out.println("Valor total com benefícios: " + decimalFormat.format(
+                funcionarioController.valorTotalMensalDosSalariosComBeneficio("01/2018")));
+
+        System.out.println("Valor total sem benefícios: " + decimalFormat.format(
+                funcionarioController.valorTotalMensalDosSalariosSemBeneficio("01/2018")));
+
+        System.out.println("Valor total mensal dos beneficios: " + decimalFormat.format(
+                funcionarioController.valorTotalMensalDosBeneficios("01/2018")));
+
+        System.out.println("Salario mais alto: " +
+                funcionarioController.salarioMaisAlto("01/2018"));
+
+        System.out.println("Beneficio mais alto: " +
+                funcionarioController.beneficioMaisAlto("01/2018"));
+
+        System.out.println("Melhor vendedor: " +
+                funcionarioController.melhorVendedor("12/2021"));
     }
 }

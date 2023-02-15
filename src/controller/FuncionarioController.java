@@ -5,6 +5,7 @@ import model.FuncionarioComBeneficio;
 import model.Venda;
 import model.Vendedor;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -109,6 +110,7 @@ public class FuncionarioController {
         return funcionario;
     }
 
+    // Um método que receba uma lista de vendedores, mês e ano e retorne o que mais vendeu no mês.
     public String melhorVendedor(String data) throws ParseException {
         int maior = 0;
         String funcionario = "";
