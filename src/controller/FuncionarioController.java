@@ -5,6 +5,7 @@ import model.FuncionarioComBeneficio;
 import model.Venda;
 import model.Vendedor;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -52,7 +53,7 @@ public class FuncionarioController {
 
     // Um método que receba uma lista de funcionários,
     // mês e ano e retorne o valor total pago (salário e benefício) a esses funcionários no mês
-    public Double valorTotalMensalDosSalariosComBeneficio(List<FuncionarioBase> funcionariosBase, String data){
+    public Double valorTotalMensalDosSalariosComBeneficio(String data) throws ParseException {
         Double soma = 0.0;
         for (FuncionarioBase fb: funcionariosBase)
             soma += fb.calcularSalarioComBeneficio(data);
@@ -62,7 +63,7 @@ public class FuncionarioController {
 
     // Um método que receba uma lista de funcionários,
     // mês e ano e retorne o total pago somente em salários no mês.
-    public Double valorTotalMensalDosSalariosSemBeneficio(List<FuncionarioBase> funcionariosBase, String data){
+    public Double valorTotalMensalDosSalariosSemBeneficio(String data) throws ParseException {
         Double soma = 0.0;
         for (FuncionarioBase fb: funcionariosBase)
             soma += fb.calcularSalarioSemBeneficio(data);
@@ -71,17 +72,16 @@ public class FuncionarioController {
 
     // Um método que receba uma lista somente com os funcionários que recebem benefícios,
     // mês e ano e retorne o total pago em benefícios no mês.
-    public Double valorTotalMensalDosBeneficios(List<FuncionarioComBeneficio> funcionarioComBeneficio,
-                                                String data){
+    public Double valorTotalMensalDosBeneficios(String data) throws ParseException {
         Double soma = 0.0;
-        for (FuncionarioComBeneficio fcb: funcionarioComBeneficio)
+        for (FuncionarioComBeneficio fcb: funcionariosComBeneficio)
             soma += fcb.calcularBeneficio(data);
         return soma;
     }
 
     // Um método que receba uma lista de funcionários,
     // mês e ano e retorne o que recebeu o valor mais alto no mês.
-    public String salarioMaisAlto(List<FuncionarioBase> funcionariosBase, String data){
+    public String salarioMaisAlto(String data) throws ParseException {
         Double soma = 0.0, maior = 0.0;
         String funcionario = "";
         for (FuncionarioBase fb: funcionariosBase) {
@@ -96,10 +96,10 @@ public class FuncionarioController {
 
     // Um método que receba uma lista somente com os funcionários que recebem benefícios,
     // mês e ano e retorne o nome do funcionário que recebeu o valor mais alto em benefícios no mês.
-    public String beneficioMaisAlto(List<FuncionarioComBeneficio> funcionarioComBeneficio, String data){
+    public String beneficioMaisAlto(String data) throws ParseException {
         Double soma = 0.0, maior = 0.0;
         String funcionario = "";
-        for (FuncionarioComBeneficio fcb: funcionarioComBeneficio) {
+        for (FuncionarioComBeneficio fcb: funcionariosComBeneficio) {
             soma += fcb.calcularBeneficio(data);
             if(soma > maior){
                 maior = soma;
@@ -109,12 +109,23 @@ public class FuncionarioController {
         return funcionario;
     }
 
-    public String melhorVendedor(List<Vendedor> vendedores, String data){
+    public String melhorVendedor(String data) throws ParseException {
         int maior = 0;
         String funcionario = "";
+
+        Date dateParams = simpleDateFormat.parse(data);
+        Calendar calendarParams = Calendar.getInstance();
+        calendarParams.setTime(dateParams);
+
+        Date dateVenda;
+        Calendar calendarVenda = Calendar.getInstance();
+
         for (Vendedor vendedor: vendedores) {
             for (Venda venda: vendedor.getVendas()) {
-                if(venda.getData().equals(data)){
+                dateVenda = simpleDateFormat.parse(venda.getData());
+                calendarVenda.setTime(dateVenda);
+                if(calendarParams.get(Calendar.YEAR) == calendarVenda.get(Calendar.YEAR)
+                        && calendarParams.get(Calendar.MONTH) == calendarVenda.get(Calendar.MONTH)){
                     if(vendedor.getVendas().size() > maior){
                         maior = vendedor.getVendas().size();
                         funcionario = vendedor.getNome();
