@@ -1,6 +1,6 @@
 # Prova Sinerji
 
-<p>Segue abaixo o diagrama uml de como foi modelado o exercício. Os nomes dos atributos e métodos não estão de acordo com o código porque eu não tive tempo de arrumar.</p>
+<p>Segue abaixo o diagrama de classes mostrando como foi modelado o exercício. Os nomes dos atributos e métodos não estão de acordo com o código porque eu não tive tempo de arrumar.</p>
 
 <p>Agumas partes do código poderiam ser feitas de maneira mais eficiente e talvez algum cálculo não esteja batendo pois não consegui fazer muitos testes devido a minha avaliação amanhã.</p>
 
