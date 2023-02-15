@@ -8,4 +8,4 @@
 
 <p>Aaaaah quase esqueci. Para rodar o projeto é só importar no IntelliJ. Já deixei os dados fornecidos no exercício mockados na main 😀</p>
 
-![Classe UML](https://user-images.githubusercontent.com/90580219/218898478-66c10179-584f-4d34-8eaa-3c08d9afb17a.png)
+![Classe UML (1)](https://user-images.githubusercontent.com/90580219/218902127-001f4ec4-6ca7-4ab2-9a77-4f78259023b4.png)
